@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, YouBoxActivity!</string>
+    <string name="app_name">YouBox</string>
+    <string name="advice_title">感谢您提出的宝贵意见，您的每一条意见都将帮助我们进步！</string>
+
+</resources>

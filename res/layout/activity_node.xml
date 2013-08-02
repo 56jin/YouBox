@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent"  
+    android:background="#FFF">
+
+  <!--   <ImageView
+        android:id="@+id/welcome_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/welcomelogo" /> -->
+        
+           <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+                android:src="@drawable/welcomelogo" />
+
+        
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView1" 
+                android:layout_marginTop="30dp" 
+                android:layout_centerHorizontal="true"
+                 
+                android:textColor="@color/textblue"  
+                android:text="智能生活，从友宝开始" />
+        
+  
+</RelativeLayout>

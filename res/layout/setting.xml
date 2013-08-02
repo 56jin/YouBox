@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/bgblack"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout_TopBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/btn_jmp_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="@null"
+                android:src="@drawable/icon_back" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/btn_jmp_main"
+                android:text="设置"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="32sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="10px"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:background="@drawable/ac_main_shape"
+            android:orientation="vertical" >
+
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top_info" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical" >
+
+                    <!-- 设置 -->
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/title_setting_shape" >
+
+                        <TextView
+                            android:id="@+id/textView_recordname"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:text="设置"
+                            android:textColor="#fff"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+                    </RelativeLayout>
+                    <!-- 账户管理 -->
+
+                    <RelativeLayout
+                        android:id="@+id/btn_account"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_setting"
+                        android:clickable="true" >
+
+                        <TextView
+                            android:id="@+id/textView_tongzhifangshi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="19dp"
+                            android:clickable="true"
+                            android:paddingBottom="20dp"
+                            android:paddingTop="20dp"
+                            android:text="账户管理"
+                            android:textColor="#000"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+                    <!-- 更多功能 -->
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/textblue" >
+
+                        <TextView
+                            android:id="@+id/textView_recordname"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:text="更多功能"
+                            android:textColor="#fff"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+                    </RelativeLayout>
+                    <!-- 网点查询 -->
+
+                    <RelativeLayout
+                        android:id="@+id/btn_nodesearch"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_setting"
+                        android:clickable="true" >
+
+                        <TextView
+                            android:id="@+id/textView_tongzhifangshi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="19dp"
+                            android:clickable="true"
+                            android:paddingBottom="20dp"
+                            android:paddingTop="20dp"
+                            android:text="网点查询"
+                            android:textColor="#000"
+                            android:textSize="15sp" />
+                        <!-- 分割线 -->
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_below="@+id/textView_tongzhifangshi"
+                            android:background="@color/textgray" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/btn_contact"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_setting"
+                        android:clickable="true" >
+
+                        <TextView
+                            android:id="@+id/textView_contect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="19dp"
+                            android:clickable="true"
+                            android:paddingBottom="20dp"
+                            android:paddingTop="20dp"
+                            android:text="内部通信"
+                            android:textColor="#000"
+                            android:textSize="15sp" />
+                        
+                      
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/btn_call"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_setting"
+                        android:clickable="true" >
+
+                        <TextView
+                            android:id="@+id/textView_call"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="19dp"
+                            android:clickable="true"
+                            android:paddingBottom="20dp"
+                            android:paddingTop="20dp"
+                            android:text="点餐"
+                            android:textColor="#000"
+                            android:textSize="15sp" />
+                           <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_below="@+id/textView_tongzhifangshi"
+                            android:background="@color/textgray" />
+                    </RelativeLayout>
+                    <!-- 关于软件 -->
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/textblue" >
+
+                        <TextView
+                            android:id="@+id/textView_recordname"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:text="关于软件"
+                            android:textColor="#fff"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+                    </RelativeLayout>
+
+                    <!-- 意见反馈 -->
+
+                    <RelativeLayout
+                        android:id="@+id/btn_advice"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_setting"
+                        android:clickable="true" >
+
+                        <TextView
+                            android:id="@+id/textView_tongzhifangshi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="19dp"
+                            android:clickable="true"
+                            android:paddingBottom="20dp"
+                            android:paddingTop="20dp"
+                            android:text="意见反馈"
+                            android:textColor="#000"
+                            android:textSize="15sp" />
+
+                        <!-- 分割线 -->
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_below="@+id/textView_tongzhifangshi"
+                            android:background="@color/textgray" />
+                    </RelativeLayout>
+                    <!-- 关于 -->
+
+                    <RelativeLayout
+                        android:id="@+id/btn_about"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_setting"
+                        android:clickable="true" >
+
+                        <TextView
+                            android:id="@+id/textView_tongzhifangshi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="19dp"
+                            android:clickable="true"
+                            android:paddingBottom="20dp"
+                            android:paddingTop="20dp"
+                            android:text="关于"
+                            android:textColor="#000"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

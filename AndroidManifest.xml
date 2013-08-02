@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.youbox.activity"
+    android:versionCode="1"
+    android:versionName="1.0.7.0618" >
+
+    <uses-sdk android:minSdkVersion="8" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar">
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity  android:name="com.youbox.activity.ContactActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.SettingActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.YouBoxActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.PhoneSearchActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.TrackingidSearchActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.AboutActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.AdviceActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.LoginActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.ProtocolActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.NodeActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.AccountActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.SearchResultActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.ShareActivity" android:label="@string/app_name" > </activity>
+        <activity  android:name="com.youbox.activity.UpdateActivity" android:label="@string/app_name" > </activity>
+    
+    </application>
+    <uses-permission android:name="READ_PHONE_STATE" /> 
+    <!-- 访问internet权限 -->
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<!-- 在SDCard中创建与删除文件权限 -->
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+	<!-- 往SDCard写入数据权限 -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    
+   	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+   	<uses-permission android:name="android.permission.INTERNET"/> 
+</manifest>
