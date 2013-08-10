@@ -17,7 +17,7 @@
         android:background="@drawable/edittext_login_shape"
         android:orientation="vertical" >
 
-         <LinearLayout
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
@@ -26,12 +26,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ems="6"
+                android:gravity="right"
                 android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="序号：" 
-                android:ems="6"
-                android:gravity="right" 
+                android:text="序号："
                 android:textColor="@color/textdeepgray" />
 
             <TextView
@@ -43,38 +43,7 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:text="手机号码：" 
-                android:ems="6"
-                android:gravity="right" 
-                android:textColor="@color/textdeepgray" />
-
-            <TextView
-                android:id="@+id/userPhone"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:ems="10"
-                android:paddingBottom="5dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
 
         <LinearLayout
@@ -91,11 +60,11 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="终端ID："
+                android:text="手机号码："
                 android:textColor="@color/textdeepgray" />
 
             <TextView
-                android:id="@+id/terminalId"
+                android:id="@+id/userPhone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -103,8 +72,7 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
 
         <LinearLayout
@@ -117,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="6"
-                android:gravity="right" 
+                android:gravity="right"
                 android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
@@ -133,8 +101,7 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
 
         <LinearLayout
@@ -146,12 +113,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ems="6"
+                android:gravity="right"
                 android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
                 android:text="快件状态："
-                android:ems="6"
-                android:gravity="right" 
                 android:textColor="@color/textdeepgray" />
 
             <TextView
@@ -163,8 +130,7 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
 
         <LinearLayout
@@ -177,9 +143,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="6"
-                android:gravity="right" 
-                android:paddingBottom="5dp" 
-                android:paddingRight="5dp" 
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:paddingRight="5dp"
                 android:paddingTop="5dp"
                 android:text="邮员ID："
                 android:textColor="@color/textdeepgray" />
@@ -193,8 +159,7 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
 
         <LinearLayout
@@ -206,12 +171,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ems="6"
+                android:gravity="right"
                 android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="隶属公司：" 
-                android:ems="6"
-                android:gravity="right" 
+                android:text="隶属公司："
                 android:textColor="@color/textdeepgray" />
 
             <TextView
@@ -223,8 +188,7 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
 
         <LinearLayout
@@ -237,8 +201,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="6"
-                android:gravity="right" 
-                android:paddingBottom="5dp" 
+                android:gravity="right"
+                android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
                 android:text="包裹ID："
@@ -253,8 +217,7 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
 
         <LinearLayout
@@ -266,12 +229,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp" 
+                android:ems="6"
+                android:gravity="right"
+                android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="存件时间：" 
-                android:ems="6"
-                android:gravity="right" 
+                android:text="存件时间："
                 android:textColor="@color/textdeepgray" />
 
             <TextView
@@ -283,8 +246,7 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
 
         <LinearLayout
@@ -296,12 +258,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp" 
+                android:ems="6"
+                android:gravity="right"
+                android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="取件时间：" 
-                android:ems="6"
-                android:gravity="right" 
+                android:text="取件时间："
                 android:textColor="@color/textdeepgray" />
 
             <TextView
@@ -313,13 +275,12 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
-        
-        
+
         <!-- add -->
-            <LinearLayout
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
@@ -328,12 +289,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp" 
+                android:ems="6"
+                android:gravity="right"
+                android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="网点地址：" 
-                android:ems="6"
-                android:gravity="right" 
+                android:text="网点地址："
                 android:textColor="@color/textdeepgray" />
 
             <TextView
@@ -345,11 +306,10 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
-        
-                <LinearLayout
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
@@ -358,42 +318,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp" 
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:text="网点ID：" 
                 android:ems="6"
-                android:gravity="right" 
-                android:textColor="@color/textdeepgray" />
-
-            <TextView
-                android:id="@+id/branchId"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:ems="10"
+                android:gravity="right"
                 android:paddingBottom="5dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
-        </LinearLayout>
-        
-                    <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp" 
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="网点名称：" 
-                android:ems="6"
-                android:gravity="right" 
+                android:text="网点名称："
                 android:textColor="@color/textdeepgray" />
 
             <TextView
@@ -405,11 +335,10 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
-        
-            <LinearLayout
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
@@ -418,42 +347,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp" 
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:text="网点称号：" 
                 android:ems="6"
-                android:gravity="right" 
-                android:textColor="@color/textdeepgray" />
-
-            <TextView
-                android:id="@+id/branchShortAddress"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:ems="10"
+                android:gravity="right"
                 android:paddingBottom="5dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
-        </LinearLayout>
-        
-            <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp" 
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="硬件版本：" 
-                android:ems="6"
-                android:gravity="right" 
+                android:text="硬件版本："
                 android:textColor="@color/textdeepgray" />
 
             <TextView
@@ -465,13 +364,10 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
-            
-            
+                android:textColor="@color/textgray" />
         </LinearLayout>
-        
-                <LinearLayout
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
@@ -480,12 +376,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp" 
+                android:ems="6"
+                android:gravity="right"
+                android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="机器号：" 
-                android:ems="6"
-                android:gravity="right" 
+                android:text="机器号："
                 android:textColor="@color/textdeepgray" />
 
             <TextView
@@ -497,11 +393,10 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
-        
-                    <LinearLayout
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
@@ -510,12 +405,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp" 
+                android:ems="6"
+                android:gravity="right"
+                android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="软件版本：" 
-                android:ems="6"
-                android:gravity="right" 
+                android:text="软件版本："
                 android:textColor="@color/textdeepgray" />
 
             <TextView
@@ -527,11 +422,10 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
-        
-                        <LinearLayout
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
@@ -540,12 +434,12 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp" 
+                android:ems="6"
+                android:gravity="right"
+                android:paddingBottom="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="状态：" 
-                android:ems="6"
-                android:gravity="right" 
+                android:text="状态："
                 android:textColor="@color/textdeepgray" />
 
             <TextView
@@ -557,10 +451,8 @@
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/textgray"
-                  />
+                android:textColor="@color/textgray" />
         </LinearLayout>
-       
     </LinearLayout>
 
 </RelativeLayout>

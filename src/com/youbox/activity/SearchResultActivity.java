@@ -6,20 +6,26 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.youbox.buss.Parcel;
+import com.youbox.buss.parcelListAdapter;
 
-import com.youbox.db.ParcelBean;
+import android.R.integer;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 
 /**
@@ -32,32 +38,197 @@ public class SearchResultActivity extends Activity {
 
 	ImageButton btn_jmp_setting;
 	ListView  listview;
-	List<ParcelBean> parcelBeanlist = new ArrayList();
 	
+
+	  List<Parcel> finalparcellist = new ArrayList();
+	List<Parcel> parcellist = new ArrayList();
+	
+	
+	parcelListAdapter mAdapter;
+	
+	private Button bt;
+    private ProgressBar pg;
+    private View moreView;
+    
+    public int size = 5;
+    public int pParcel = 0 ;
+    
+
+	CheckBox checkBox_autologin;
+    
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		// 关闭响应
 		IntentFilter filter = new IntentFilter();
         filter.addAction("finish");
         registerReceiver(mFinishReceiver, filter);
+        
 		setContentView(R.layout.activity_searchresult);
 		
-		
-		
+		// 获取json
 	 	Bundle extras = getIntent().getExtras();
-	 	String parcellist = extras.getString("parcellist");
+	 	String parcelJson = extras.getString("parcellist");
+	 	
+	 	// jSON 转换
+	 	parcellist = JsonToTrackList(parcelJson);
+	 	// 初始化处理
+		FindView();
+		SetClick();
+		initData();
 		
-//		String parcellist = "[{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':2,'getTime':'2013-03-18T10:03:35','packageId':72,'packageStatus':1,'parcelId':'abcd12bacd','storeTime':'2013-03-18T10:01:59','terminalId':1,'userPhone':18960877052},{'boxId':12,'courierCorp':'顺丰快递','courierId':1,'getTime':'2013-05-17T15:54:49','packageId':71,'packageStatus':1,'parcelId':'abcd12341bacd','storeTime':'2013-03-18T09:48:48','terminalId':1,'userPhone':18960877052}]";
+	}
+	
+	private void FindView() {
+		btn_jmp_setting = (ImageButton) findViewById(R.id.btn_jmp_setting);
+		listview = (ListView) findViewById(R.id.ListView_searchresult); 
+		moreView = getLayoutInflater().inflate(R.layout.listitem_searchresult_loadmore, null);
+	    bt = (Button) moreView.findViewById(R.id.bt_load);
+	    pg = (ProgressBar) moreView.findViewById(R.id.pg);
+		checkBox_autologin = (CheckBox) findViewById(R.id.checkBox_autologin);
+		listview.addFooterView(moreView);
+	}
+  
+	private void SetClick() {
+		btn_jmp_setting.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				SearchResultActivity.this.finish();
+			}
+		});
+		checkBox_autologin.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				if(checkBox_autologin.isChecked())
+				{
+//					parcellist.clear();
+					int num = finalparcellist.size();
+					for(int i = 0 ; i < finalparcellist.size() ; i ++)
+					{
+						if(finalparcellist.get(i).getPackageStatus().equals("已取"));
+						parcellist.add(finalparcellist.get(i));
+					}
+				}
+				else {	
+					parcellist = finalparcellist;
+				}
+				mAdapter.clear();
+				mAdapter.loadMore(parcellist);
+
+			}
+		});
+		 bt.setOnClickListener(new OnClickListener() {
+	            @Override
+	            public void onClick(View v) {
+	                pg.setVisibility(View.VISIBLE);// 将进度条可见
+	                bt.setVisibility(View.GONE);// 按钮不可见
+	                 Handler handler = handler = new Handler();
+	                 handler.postDelayed(new Runnable() {
+	                    @Override
+	                    public void run() {
+	                    	
+	            			int max = parcellist.size();
+	                    	
+	                    	if(pParcel == max)
+	                    	{
+	                    		listview.removeFooterView(moreView);
+	                    	}
+	                    	else
+	                    	{
+	                    		List<Parcel> currentparcel  = new ArrayList();
+		            			int i = pParcel ;
+		            			
+		            			pParcel = pParcel + size;
+		            			if(pParcel > max)
+		            			{
+		            				pParcel = max;
+		            				listview.removeFooterView(moreView);
+		            			}
+		            			
+		            			for(; i < pParcel; i ++)
+		            			{
+		            				currentparcel.add(parcellist.get(i));
+		            			}
+		            			
+		                    	mAdapter.loadMore(currentparcel);
+		                    	
+		                    	int result = max - pParcel ;
+		                    	bt.setText("更多    (还有:" + result + "条)" );
+		                    	
+		                    	
+//		                    	bt.setText("更多    (max:" + max + "  loaded:" + pParcel + ")" );
+		                        bt.setVisibility(View.VISIBLE);
+		                        pg.setVisibility(View.GONE);
+	                    	}
+	                    	
+	                    }
+	                }, 1000);
+	            }
+	        });
+	}
+	
+	private void initData() {
+		// 空数据
+		if (parcellist == null) {
+			// 无数据
+		} else {
+			List<Parcel> currentparcel  = new ArrayList();
+			int i = 0 ;
+			int num = 0; 
+			if(parcellist.size() < size)
+			{
+				num = parcellist.size();
+			}
+			else {
+				num = size;
+			}
+			for(; i < num ; i ++)
+			{
+				currentparcel.add(parcellist.get(i));
+			}
+			pParcel = pParcel + i;
+			mAdapter = new parcelListAdapter(this, currentparcel);
+			listview.setAdapter(mAdapter);
+			
+			if(num < size)
+			{
+				listview.removeFooterView(moreView);
+			}
+			int result = parcellist.size() - pParcel ;
+			bt.setText("更多    (还有:" + result + "条)" );
+			
+//			bt.setText("更多    (max:" + parcellist.size() + "  loaded:" + pParcel + ")" );
+		}
+	}
+
+	
+	/**
+	 * jSON TO Track
+	 * @param Json
+	 * @return
+	 */
+	public List<Parcel> JsonToTrackList(String Json)
+	{
+
+		List<Parcel> pl = new ArrayList();
 		
-//		String parcellist = "[{'boxId': 9, 'courierCorp': '申通快递', 'courierId': 1, 'getTime': null, 'packageId': 23, 'packageStatus': 0, 'parcelId': '23456789023456', 'storeTime': '2013-03-12T17:46:03', 'terminal': {'branch': {'branchAddress': '福州市东水路', 'branchId': 2,  'branchName': '交通厅', 'branchShortAddress': '交通厅网点' }, 'hardVer': '1', 'name': '一号机', 'softVer': '1', 'status': 0, 'terminalId': 3},  'userPhone': 15060065536 }]";
-		 
-		
-		try {
-			JSONArray jsonArray = new JSONArray(parcellist);
-			int count = jsonArray.length();
-			for(int i=0;i<count;i++)
+			JSONArray jsonArray = null;
+			int count = 0;
+			try {
+				jsonArray = new JSONArray(Json);
+				count = jsonArray.length();
+			} catch (JSONException e1) {
+				return null;
+			}
+			
+			for(int i=0 ; i < count ; i++)
             {
-				ParcelBean parcelBean = new ParcelBean();
+
+				Parcel parcelBean = new Parcel();
+				try {
+
+				parcelBean.setNumID("" + (i + 1));
 				parcelBean.setBoxId(jsonArray.getJSONObject(i).getString("boxId"));
 				parcelBean.setCourierCorp(jsonArray.getJSONObject(i).getString("courierCorp"));
 				parcelBean.setCourierId(jsonArray.getJSONObject(i).getString("courierId"));
@@ -71,56 +242,29 @@ public class SearchResultActivity extends Activity {
                 parcelBean.setName(response.getString("name"));
                 parcelBean.setSoftVer(response.getString("softVer"));
                 parcelBean.setStatus(response.getString("status"));
-                parcelBean.setTerminalId(response.getString("terminalId"));
+//                parcelBean.setTerminalId(response.getString("terminalId"));
                 
                 response=response.getJSONObject("branch");
                 parcelBean.setBranchAddress(response.getString("branchAddress"));
-                parcelBean.setBranchId(response.getString("branchId"));
+//                parcelBean.setBranchId(response.getString("branchId"));
                 parcelBean.setBranchName(response.getString("branchName"));
-                parcelBean.setBranchShortAddress(response.getString("branchShortAddress"));	
+//                parcelBean.setBranchShortAddress(response.getString("branchShortAddress"));	
                 
 				parcelBean.setUserPhone(jsonArray.getJSONObject(i).getString("userPhone"));
-				parcelBeanlist.add(parcelBean);
-            }
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		
-		int[] test = { 3, 4, 2, 6, 2, 1, 9, 5 };
-		for (int i = 0; i < test.length - 1; i++) {
-			for (int j = i + 1; j < test.length; j++) {
-				if (test[i] > test[j]) {
-					int temp = test[i];
-					test[i] = test[j];
-					test[j] = temp;
 				}
-			}
-		}
-	      int x1  =   test.length;
-
-			System.out.print(x1);
-		for(int i = 0 ; i < test.length ; i ++)
-		{
-			int x = test[i];
-			System.out.print(x);
-		}
-		
-		sortStoreTime(parcelBeanlist);
-		FindView();
-		SetClick();
-		init();
+				catch (JSONException e) {
+				   parcelBean = null;
+    			   e.printStackTrace();
+    		    }
+				if(parcelBean!= null)
+					pl.add(parcelBean);
+            }
+		return pl;
 	}
 	
 	/**
-	 * 时间排序
+	 * 关闭响应
 	 */
-	public List<ParcelBean> sortStoreTime(List<ParcelBean> parcelBeanlist)
-	{
-		
-		//int [] test2 = test; 
-		return parcelBeanlist;
-	}
-	
 	private BroadcastReceiver mFinishReceiver = new BroadcastReceiver() {
 	    @Override
 	    public void onReceive(Context context, Intent intent) {
@@ -129,69 +273,4 @@ public class SearchResultActivity extends Activity {
 	       }
 	    }
 	};
-	/**
-	 * 数据初始化
-	 */
-	private void init()
-	{
-		//生成动态数组，加入数据  
-        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();  
-        for(int i=0;i<parcelBeanlist.size();i++)  
-        {  
-            HashMap<String, Object> map = new HashMap<String, Object>();  
-            map.put("numID",   "" + (i + 1));  
-            map.put("userPhone",   parcelBeanlist.get(i).getUserPhone());  
-            map.put("boxId",   parcelBeanlist.get(i).getBoxId());  
-            map.put("courierCorp",   parcelBeanlist.get(i).getCourierCorp());  
-            map.put("courierId",  parcelBeanlist.get(i).getCourierId());  
-            map.put("getTime",  parcelBeanlist.get(i).getGetTime());  
-            map.put("packageStatus",   parcelBeanlist.get(i).getPackageStatus());  
-            map.put("parcelId",   parcelBeanlist.get(i).getParcelId());  
-            map.put("storeTime",   parcelBeanlist.get(i).getStoreTime());  
-            
-
-            map.put("branchAddress",   parcelBeanlist.get(i).getBranchAddress()); 
-            map.put("branchId",   parcelBeanlist.get(i).getBranchId()); 
-            map.put("branchName",   parcelBeanlist.get(i).getBranchName()); 
-            map.put("branchShortAddress",   parcelBeanlist.get(i).getBranchShortAddress()); 
-            map.put("hardVer",   parcelBeanlist.get(i).getHardVer()); 
-            map.put("name",   parcelBeanlist.get(i).getName()); 
-            map.put("softVer",   parcelBeanlist.get(i).getSoftVer()); 
-            map.put("status",   parcelBeanlist.get(i).getStatus()); 
-            
-            
-            
-            
-            map.put("terminalId",   parcelBeanlist.get(i).getTerminalId());  
-            listItem.add(map);  
-        }  
-        SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,
-            R.layout.listitem_searchresult,
-            new String[] {"numID","userPhone","boxId", "courierCorp","courierId","getTime", "packageStatus","parcelId","storeTime", "terminalId", "branchAddress", "branchId", "branchName", "branchShortAddress", "hardVer", "name", "softVer", "status"},  
-            new int[] {R.id.numID,R.id.userPhone,R.id.boxId,R.id.courierCorp,R.id.courierId,R.id.getTime,R.id.packageStatus,R.id.parcelId,R.id.storeTime,R.id.terminalId,R.id.branchAddress,R.id.branchId,R.id.branchName,R.id.branchShortAddress,R.id.hardVer,R.id.name,R.id.softVer,R.id.status}
-               
-//            new String[] {"numID","userPhone","boxId", "courierCorp","courierId","getTime", "packageStatus","parcelId","storeTime", "terminalId", "terminalId", "terminalId", "terminalId", "terminalId", "terminalId", "terminalId", "terminalId", "terminalId", "terminalId", "terminalId"},  
-//            new int[] {R.id.numID,R.id.userPhone,R.id.boxId,R.id.courierCorp,R.id.courierId,R.id.getTime,R.id.packageStatus,R.id.parcelId,R.id.storeTime,R.id.terminalId}  
-    );  
-        listview.setAdapter(listItemAdapter);   
-        listview.setOnItemClickListener(new OnItemClickListener() {  
-            @Override  
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {   
-            }  
-        });  
-	}
-
-	private void FindView() {
-		btn_jmp_setting = (ImageButton) findViewById(R.id.btn_jmp_setting);
-		listview = (ListView) findViewById(R.id.ListView_searchresult); 
-	}
-  
-	private void SetClick() {
-		btn_jmp_setting.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				SearchResultActivity.this.finish();
-			}
-		});
-	}
 }
